@@ -3,8 +3,6 @@ layout: post
 image: /img/hello_world.jpeg
 title: My Experiments with patience: Bare metal programming of an x86 PC
 ---
-
-
 Hi. Welcome to my first blog!  I assume that a reader has basic knowledge about a computer, or at least seen one. If you haven't, I can't understand how you used a time machine to come from the past without ever seeing a computer. Go back to your stone house.
 
 Let me start with a really cool analogy. You go to a shop to buy a digital watch. Here's how the conversation would go...
