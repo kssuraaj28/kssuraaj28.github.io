@@ -1,7 +1,7 @@
 ---
 layout: post
-title: My Experiments with patience: Bare metal programming of an x86 PC
 image: /img/hello_world.jpeg
+title: My Experiments with patience: Bare metal programming of an x86 PC
 ---
 
 
