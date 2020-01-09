@@ -1,16 +1,12 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Why you'd (not) want to go on a date with me
 ---
+### Sup!
+My name is Suraaj.
+I am currently a CS undergrad @ IIT Roorkee. I have a passion for computer hardware and low level software
 
-My name is Inigo Montoya. I have the following qualities:
+I love learning how things work and these are the problems that usually keep me up at night. I believe in quality education, where people learn something for life, and not just to pass a test or examination, and apply these to problems that they may face. 
 
-- I rock a great mustache
-- I'm extremely loyal to my family
-
-What else do you need?
-
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+Life is simple, and it is meant to be. I've always believed that great minds can understand difficult concepts, but the greatest minds can make them simple.

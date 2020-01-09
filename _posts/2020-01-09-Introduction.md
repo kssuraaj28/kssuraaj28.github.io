@@ -1,6 +1,6 @@
 ---
 layout: post
-image: /img/hello_world.jpeg
+image: /img/Computer.png
 title: My Experiments with patience
 subtitle: Bare metal programming of an x86 PC
 ---
