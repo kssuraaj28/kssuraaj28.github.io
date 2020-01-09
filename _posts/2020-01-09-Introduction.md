@@ -47,6 +47,6 @@ On a serious note: Operating systems are *not* bloat!! In our daily life, you ne
 
 Things to Google: ISA, Computer Organization, Computer Architecture
 
-Until next time
+Until next time  
 Suraaj
 
