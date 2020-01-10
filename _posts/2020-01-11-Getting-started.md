@@ -3,25 +3,27 @@ layout: post
 image: /img/Computer.png
 title: You see a big red button
 subtitle: So you push it
+published: true
 ---
 Hello and welcome! This is jumping right off from my first blog, into all of its technical goodness. By the end, equipped with this knowledge, the reader can hopefully create his first bare metal program.  
 This blog introduces the first villian(s) of this series: The toolchains that I used and the environment that I worked in. That's the final boss of this level, and we'll deal with the smaller issues first.
 I have a chip (the x86 processor) and its instruction manual (ISA). What are the next steps? Where do you instruct it? How do you instruct it? Do you say the instructions? Do you write them? Do you pat the processor on the shoulder for a job well done? Does a processor even have a shoulder? Getting started in itself seems like such a pain - May the gods have mercy on us. :)
 
 ### Computers: As the Gods see them
-![Who knew that a computer was this simple?](/img/VonNeumann.png)
+![Who knew that a computer was this simple?](/img/VonNeumann.png)  
 Where did *memory* and *I/O* come from? I thought processors were complex enough!
 #### Memory
 Here's what a conversation between a processor and memory would look like:
 
->Processor: Hey bro, I need to do someth....
->Memory: Again.... What do you want now? Do you want to **read** me or **write** into me
->Processor: I want to read the *byte* that you have stored in location 102.
->Memory: Here you go. *Gives the byte.*  
->Processor: What would I do without you bro =(
+>Processor: Hey bro, I need to do someth....  
+>Memory: Again.... What do you want now? Do you want to **read** me or **write** into me  
+>Processor: I want to read the *byte* that you have stored in location 102.  
+>Memory: Here you go. *Gives the byte.*   
+>Processor: What would I do without you bro =(  
 That's it: pure unadultrated bromance. Seriously, the processor reads/writes data which is stored in memory in locations/addresses. It's that simple.
 
-![Mando : Processor; Baby Yoda: Memory](/img/bro.jpg)
+![Mando : Processor; Baby Yoda: Memory](/img/bro.jpg)  
+
 Note: Maybe you're familiar with all this and are starting to associate memory with RAM... Well, you'd be partially correct. RAM is a part of the memory system, but not really all of it. For example, in the memory system (give me an address and I give you the data - remember the bromance?) the first 1000 locations might be reading from/writing to RAM, but address 1001-2000 maybe writing to video memory - the memory associated with your display device (screen). But it's mostly RAM and this is just a subtlety. **But hard disks/SSD is not memory**. Why? No bromance. The processor interacts with the hard disk in some other way, meaning there's no *'give me an address, take a byte'* relationship. It's more like an I/O device
 
 #### I/O Devices
@@ -30,26 +32,26 @@ This requires another address space: an I/O address space, where every such micr
 
 Here's what a conversation between a processor and the I/O subsystem would look like: 
 
->Processor: OMG....Is this a challege?: I need to receive a character from the keyboard
-Where's my book of I/O mappings, I need to find which microcontroller deals with keyboard functionality
->Keyboard: *Notice me senpai*
->Processor: Wait bro... Found it, the I/O *port* number. *Realizes that the keyboard is a device, recalls the whole watch analogy again*
-**So the device must have a _how to use guide_ published by the manufacturer!**
->Keyboard: *Notice me senpai*
->Memory: Refers manual, sends what is required  to the port (the command maybe? It all depends on the manufacturer. Maybe you need to greet the microcontroller first and then ask it to do something politely... maybe not. It all depends on the manual)
->Keyboard: *Notice me senpai*
->Keyboard microcontroller: Lol, I got something. I need to read a keypress from the keyboard? Easy
->Keyboard: Finally, I have been waitin...
->Keyboard microcontroller: Done
->Processor: That was painful.
+>Processor: OMG....Is this a challege?: I need to receive a character from the keyboard  
+Where's my book of I/O mappings, I need to find which microcontroller deals with keyboard functionality  
+>Keyboard: *Notice me senpai*  
+>Processor: Wait bro... Found it, the I/O *port* number. *Realizes that the keyboard is a device, it must have a manufacturer, recalls the whole watch analogy again*  
+**So the device must have a _how to use guide_ published by the manufacturer!**  
+>Keyboard: *Notice me senpai*  
+>Memory: Refers manual, sends what is required  to the port (the command maybe? It all depends on the manufacturer. Maybe you need to greet the microcontroller first and then ask it to do something politely... maybe not. It all depends on the manual)  
+>Keyboard: *Notice me senpai*  
+>Keyboard microcontroller: Lol, I got something. I need to read a keypress from the keyboard? Easy  
+>Keyboard: Finally, I have been waitin...   
+>Keyboard microcontroller: Done  
+>Processor: That was painful.  
 
 That's what it is: painful. That's why modern operating systems install something called a device driver (it's a piece of software), that takes care of all this I/O business for you .As a programmer, you only interact with the driver to deal with I/O.
 
 ### The Von Neumann Model
 Remember these questions:
 What are the next steps? Where do you instruct the processor? How do you instruct it? Do you say the instructions?, and so on... 
-The answer is the Von Neumann Model.  
-This seems like a mouthful, but it simply answers all the questions that we asked before. This is the computing model that all the computers today use. It is simply charecterized by two things:
+The answer is the Von Neumann Model. This is simply the model of computing that all computers adopt. 
+This seems like a mouthful, but it simply answers all the questions that we asked before. It is simply charecterized by two things:
 
 * Instructions stored in *memory*. 
 * Sequential execution of those instructions. (Presence of an instruction pointer)
@@ -117,13 +119,13 @@ My program is simply a jump instruction that jumps to itself, making an infinite
 
 Finally save the file as anything (file.bin maybe?). To emulate using qemu, this is what you need:
 > qemu-system-i386 -hda file.bin
-qemu-system-i386 is our x86 processor simulator. -hda means consider file.bin as the first hard disk in your emulated PC.
-You should get nothing, as expected. Try removing the magic bytes and emulate. 
-### Conclusion  
-Phew, that was a lot! In the next blog, I talk about assemblers and how life is simple, and so are assemlbers.
 
-Things to Google: BIOS, UEFI, qemu, Hexadecimal, Binary, Von Neumann Model
+qemu-system-i386 is our x86 processor simulator. -hda means consider file.bin as the first hard disk in your emulated PC.
+You should get nothing, as expected. Try removing the magic bytes and emulate. You'll see that the BIOS doesn't recognize any bootable disk. 
+### Conclusion  
+Phew, that was a lot! In the next blog, I talk about how life is simple, and so are assemlbers.
+
+Things to Google: BIOS, UEFI, qemu, Hexadecimal, Binary, Von Neumann Model, registers, Program counter/Instruction pointer
 
 Until next time  
 Suraaj
-
