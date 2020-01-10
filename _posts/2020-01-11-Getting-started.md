@@ -11,18 +11,26 @@ I have a chip (the x86 processor) and its instruction manual (ISA). What are the
 
 ### Computers: As the Gods see them
 ![Who knew that a computer was this simple?](/img/VonNeumann.png)  
+
+
 Where did *memory* and *I/O* come from? I thought processors were complex enough!
 #### Memory
 Here's what a conversation between a processor and memory would look like:
 
->Processor: Hey bro, I need to do someth....  
->Memory: Again.... What do you want now? Do you want to **read** me or **write** into me  
+>Processor: Hey bro, I need to do someth....
+
+>Memory: Again.... What do you want now? Do you want to **read** me or **write** into me
+
 >Processor: I want to read the *byte* that you have stored in location 102.  
->Memory: Here you go. *Gives the byte.*   
->Processor: What would I do without you bro =(  
+
+>Memory: Here you go. *Gives the byte.*
+
+>Processor: What would I do without you bro =( 
+
 That's it: pure unadultrated bromance. Seriously, the processor reads/writes data which is stored in memory in locations/addresses. It's that simple.
 
 ![Mando : Processor; Baby Yoda: Memory](/img/bro.jpg)  
+
 
 Note: Maybe you're familiar with all this and are starting to associate memory with RAM... Well, you'd be partially correct. RAM is a part of the memory system, but not really all of it. For example, in the memory system (give me an address and I give you the data - remember the bromance?) the first 1000 locations might be reading from/writing to RAM, but address 1001-2000 maybe writing to video memory - the memory associated with your display device (screen). But it's mostly RAM and this is just a subtlety. **But hard disks/SSD is not memory**. Why? No bromance. The processor interacts with the hard disk in some other way, meaning there's no *'give me an address, take a byte'* relationship. It's more like an I/O device
 
@@ -34,15 +42,23 @@ Here's what a conversation between a processor and the I/O subsystem would look 
 
 >Processor: OMG....Is this a challege?: I need to receive a character from the keyboard  
 Where's my book of I/O mappings, I need to find which microcontroller deals with keyboard functionality  
->Keyboard: *Notice me senpai*  
+
+>Keyboard: *Notice me senpai*
+
 >Processor: Wait bro... Found it, the I/O *port* number. *Realizes that the keyboard is a device, it must have a manufacturer, recalls the whole watch analogy again*  
 **So the device must have a _how to use guide_ published by the manufacturer!**  
->Keyboard: *Notice me senpai*  
->Memory: Refers manual, sends what is required  to the port (the command maybe? It all depends on the manufacturer. Maybe you need to greet the microcontroller first and then ask it to do something politely... maybe not. It all depends on the manual)  
->Keyboard: *Notice me senpai*  
+
+>Keyboard: *Notice me senpai*
+
+>Processor: Refers manual, sends what is required  to the port (the command maybe? It all depends on the manufacturer. Maybe you need to greet the microcontroller first and then ask it to do something politely... maybe not. It all depends on the manual) 
+
+>Keyboard: *Notice me senpai*
+
 >Keyboard microcontroller: Lol, I got something. I need to read a keypress from the keyboard? Easy  
->Keyboard: Finally, I have been waitin...   
->Keyboard microcontroller: Done  
+>Keyboard: Finally, I have been waitin...
+
+>Keyboard microcontroller: Done
+
 >Processor: That was painful.  
 
 That's what it is: painful. That's why modern operating systems install something called a device driver (it's a piece of software), that takes care of all this I/O business for you .As a programmer, you only interact with the driver to deal with I/O.
