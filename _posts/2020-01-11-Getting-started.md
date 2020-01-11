@@ -123,7 +123,7 @@ Finally save the file as anything (file.bin maybe?). To emulate using qemu, this
 qemu-system-i386 is our x86 processor simulator. -hda means consider file.bin as the first hard disk in your emulated PC.
 You should get nothing, as expected. Try removing the magic bytes and emulate. You'll see that the BIOS doesn't recognize any bootable disk. 
 ### Conclusion  
-Phew, that was a lot! In the next blog, I talk about how life is simple, and so are assemlbers. I might also talk about the chicken and egg problem of needed a working OS to write an OS.
+Phew, that was a lot! In the next blog, I talk about how life is simple, and so are assemblers. I might also talk about the chicken and egg problem of needed a working OS to write an OS.
 
 Things to Google: 
 * BIOS: Legacy vs UEFI
