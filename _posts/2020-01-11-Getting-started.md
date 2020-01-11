@@ -66,7 +66,8 @@ That's what it is: painful. That's why modern operating systems install somethin
 
 ### The Von Neumann Model
 Remember these questions:
-What are the next steps? Where do you instruct the processor? How do you instruct it? Do you say the instructions?, and so on... 
+>What are the next steps? Where do you instruct the processor? How do you instruct it? Do you say the instructions?, and so on...
+
 The answer is the Von Neumann Model. This is simply the model of computing that all computers adopt. 
 This seems like a mouthful, but it simply answers all the questions that we asked before. It is simply charecterized by two things:
 
@@ -74,13 +75,17 @@ This seems like a mouthful, but it simply answers all the questions that we aske
 * Sequential execution of those instructions. (Presence of an instruction pointer)
 
 The instructions are stored in the form of bits... The _encoding_ of an instruction (What sequence of bits corresponds to what instruction) is specified by the *ISA* (of course). The instruction pointer is simply a *register* that points to the current instruction, ie, it has the address value of the current instruction stored in it.
+
 Thus, if you have a program, read the ISA and encode all your instructions into corresponding bit representation. Store that huge sequence of 1's and 0's in memory (in some address) and point your instruction pointer (IP) there (Store the address of the starting instruction in IP), there's your program being executed by the CPU! That is the **most hardcore way of programming**, hands down. If you can do that, you're God. I will build a temple for you. I would put a _real men code in binary_ meme here or something, but you get the idea.
 
 ### The Boot Process
-Well, you can write a program in binary: Look at the ISA and write the corresponding bits on paper, but how will you place that in memory?? How will you change the instruction pointer? Of the three tasks that are required to become **hardcore programmer**, two already seem impossible. So, checkmate: no temple for you.  
+Well, you can write a program in binary: Look at the ISA and write the corresponding bits on paper, but how will you place that in memory?? How will you change the instruction pointer? Of the three tasks that are required to become **hardcore programmer**, two already seem impossible. So, checkmate: no temple for you.
+
 Moreover, remember how we thought that we would be the only software on the system? Wrong again. It's all because of that motherboard. The manufacturer placed basic software in some memory structure (this is part of the memory system). This is responsible for checking external devices, checking whether memory works properly, etc.  
 This software is called the **BIOS(Basic Input Output System)**.
+
 So you power on the PC, there's something called a **POST(Power On Self Test)**, at the end of which control passes to the BIOS.
+
 The BIOS chills around for a while (doing something useful of course) and here comes the important part - It checks the connected hard disks (Any form of permanent storage actually) to see whether they are **bootable**. If they are bootable, BIOS loads the first 512 bytes (that's a sector: disks are made up of sectors which are 512 bytes each) of that hard disk into memory address **0x7c00** (That's hexadecimal: In decimal that would be 31744) and sets the instruction pointer at 0x7c00. Finally we have control!!
  
 Our 512 byte sector is called the **boot sector** and would be present from memory address 0x7c00 to 0x7e00 (0x7e00-0x7c00 = 0x200 = 512).
@@ -94,10 +99,12 @@ Making a hard disk bootable: How the BIOS identifies that a disk is bootable is 
 
 ### Boss Fight: The required tools
 I've always hated this part. Learning any new skill often bogs you down with lots of new software that you will have to learn and it becomes very disheartening to keep watching tutorials. When you should be solving the problem, you'd be spending time learning stuff like programming lanuages (want to do machine learning - learn python first), programming environments (want to do android dev - learn android studio), etc. I understand that it is absolutely necessary to do so. However, my aversions to learning software has made me put this as the boss fight for this blog ;).
-I am using Linux, where it gets crazier with tons of command line software. However, Linux is the most suitable platform for serious 
-development work. All of my work was done in Linux.
+
+I am using Linux, where it gets crazier with tons of command line software. However, Linux is the most suitable platform for serious development work. All of my work was done in Linux.
+
 I always believed in a need based tool usage. I want a hexadecimal editor program (to write in binary/hex) and a x86 PC emulator. You 
 can use **ghex/bvi** as the hex editor and **qemu** as the x86 pc emulator
+
 ### Code at last: Wait, does binary/hex count as code?
 My program is simply a jump instruction that jumps to itself, making an infinite loop. I refer to the ISA, and see that the encoding for the instruction is 0xEBFE (1110101111111110 in binary: I dare you, check it!). I place it as the first two bytes of our file and make bytes 510 and 511 0x55AA. **This is our first bare metal program**. A hex dump (you can use **xxd** to hex dump) should look like this:
 
@@ -116,7 +123,7 @@ Finally save the file as anything (file.bin maybe?). To emulate using qemu, this
 qemu-system-i386 is our x86 processor simulator. -hda means consider file.bin as the first hard disk in your emulated PC.
 You should get nothing, as expected. Try removing the magic bytes and emulate. You'll see that the BIOS doesn't recognize any bootable disk. 
 ### Conclusion  
-Phew, that was a lot! In the next blog, I talk about how life is simple, and so are assemlbers.
+Phew, that was a lot! In the next blog, I talk about how life is simple, and so are assemlbers. I might also talk about the chicken and egg problem of needed a working OS to write an OS.
 
 Things to Google: 
 * BIOS: Legacy vs UEFI
