@@ -55,13 +55,14 @@ Where's my book of I/O mappings, I need to find which microcontroller deals with
 >Keyboard: *Notice me senpai*
 
 >Keyboard microcontroller: Lol, I got something. I need to read a keypress from the keyboard? Easy  
+
 >Keyboard: Finally, I have been waitin...
 
 >Keyboard microcontroller: Done
 
 >Processor: That was painful.  
 
-That's what it is: painful. That's why modern operating systems install something called a device driver (it's a piece of software), that takes care of all this I/O business for you .As a programmer, you only interact with the driver to deal with I/O.
+That's what it is: painful. That's why modern operating systems install something called a device driver (it's a piece of software), that takes care of all this I/O business for you. As a programmer, you only interact with the driver to deal with I/O.
 
 ### The Von Neumann Model
 Remember these questions:
@@ -76,14 +77,15 @@ The instructions are stored in the form of bits... The _encoding_ of an instruct
 Thus, if you have a program, read the ISA and encode all your instructions into corresponding bit representation. Store that huge sequence of 1's and 0's in memory (in some address) and point your instruction pointer (IP) there (Store the address of the starting instruction in IP), there's your program being executed by the CPU! That is the **most hardcore way of programming**, hands down. If you can do that, you're God. I will build a temple for you. I would put a _real men code in binary_ meme here or something, but you get the idea.
 
 ### The Boot Process
-Well, you can write a program in binary, that's cool: Look at the ISA and write the bits on paper, but how will you place that in memory?? How will you change the instruction pointer? Of the three tasks that are required to become **hardcore programmer**, two already seem impossible. So, checkmate: no temple for you.  
+Well, you can write a program in binary: Look at the ISA and write the corresponding bits on paper, but how will you place that in memory?? How will you change the instruction pointer? Of the three tasks that are required to become **hardcore programmer**, two already seem impossible. So, checkmate: no temple for you.  
 Moreover, remember how we thought that we would be the only software on the system? Wrong again. It's all because of that motherboard. The manufacturer placed basic software in some memory structure (this is part of the memory system). This is responsible for checking external devices, checking whether memory works properly, etc.  
 This software is called the **BIOS(Basic Input Output System)**.
 So you power on the PC, there's something called a **POST(Power On Self Test)**, at the end of which control passes to the BIOS.
-The BIOS chills around for a while (doing something useful of course) and here comes the important part... It checks the connected hard disks (or floppy or CD... but who uses those nowadays??) to see whether they are **bootable**. If they are bootable,BIOS loads the first 512 bytes (that's a sector: disks are made up of sectors which are 512 bytes each) of that hard disk into memory address **0x7c00** (That's hexadecimal: In decimal that would be 31744) and sets the instruction pointer at 0x7c00. Finally we have control!!
- Our 512 byte sector is called the **boot sector** and would be present from memory address 0x7c00 to 0x7e00 (0x7e00-0x7c00 = 0x200 = 512).
+The BIOS chills around for a while (doing something useful of course) and here comes the important part - It checks the connected hard disks (Any form of permanent storage actually) to see whether they are **bootable**. If they are bootable, BIOS loads the first 512 bytes (that's a sector: disks are made up of sectors which are 512 bytes each) of that hard disk into memory address **0x7c00** (That's hexadecimal: In decimal that would be 31744) and sets the instruction pointer at 0x7c00. Finally we have control!!
+ 
+Our 512 byte sector is called the **boot sector** and would be present from memory address 0x7c00 to 0x7e00 (0x7e00-0x7c00 = 0x200 = 512).
 
-Note: This is how BIOS traditionally worked. This is called Legacy BIOS. Nowadays, there's the super saiyan version of BIOS called UEFI BIOS that carries out the boot process a little differently and simplifies matters in some ways. I was lucky to have a real PC that usedLegacy BIOS lying around. Most old PC's use this. However, our x86 PC emulator(we'll emulate our bare metal programs to save the trouble of restarting the PC multiple times) will use legacy BIOS so it's all chill. 
+Note: This is how BIOS traditionally worked. This is called Legacy BIOS. Nowadays, there's the super saiyan version of BIOS called UEFI BIOS that carries out the boot process a little differently and simplifies matters in some ways. I was lucky to have a real PC that used Legacy BIOS lying around. Most old PC's use this. However, our x86 PC emulator(we'll emulate our bare metal programs to save the trouble of restarting the PC multiple times) will use legacy BIOS so it's all chill. 
 
 ### Our target
 Now that we know how a computer boots, first we need to make our disk *bootable* (Bootable means that the first sector will be read into memory address 0x7c00). Then, we'll write our program in binary (hex) by referring to the ISA (that's the way god wanted), and write the bits into the first sector of the hard disk (so that it'll load into memory address 0x7c00) and our program will execute.
@@ -116,7 +118,14 @@ You should get nothing, as expected. Try removing the magic bytes and emulate. Y
 ### Conclusion  
 Phew, that was a lot! In the next blog, I talk about how life is simple, and so are assemlbers.
 
-Things to Google: BIOS, UEFI, qemu, Hexadecimal, Binary, Von Neumann Model, registers, Program counter/Instruction pointer
+Things to Google: 
+* BIOS: Legacy vs UEFI
+* Qemu
+* Hexadecimal, Binary and decimal
+* Von Neumann Model
+* Registers, Program counter/Instruction pointer
+* Microcontroller, microprocessor
+* I/O ports software and hardware
 
 Until next time  
 Suraaj
