@@ -33,7 +33,7 @@ Well you get the idea. The 8086 was a 16 bit processor. There was a slow evoluti
 So, your friend can still execute his 16 bit code on your processor which is acting like the 8086. (It's kinda like using a lamborghini like an autorickshaw, but well, anything for your friend). It has a nice philosophical touch too:
  However high you go, always know your roots... This mode is the **real** mode. It is a mode where your processor acts like a 16 bit one, and all x86 processors boot into this mode.
 
-![Iroh loves us]( /img/Iroh.jpg)
+![Iroh loves us]( /img/Blog3/Iroh.jpg)
 
 
 ### Hello World... Er... Hello Daddy!
@@ -48,7 +48,7 @@ But most of the work seems very mechanical.... See the ISA and get the encoding 
 Turns out this is the tool that we require the most! This tool is called an **assembler**. It's basically a portable *ISA Book*, that reads the instructions that you want to execute as input, and outputs the binary encoding of that instruction. 
 In my case I use the **netwide assembler**, lovingly called **nasm**.
 
-![The assembler](/img/Assembler.jpg)
+![The assembler](/img/Blog3/Assembler.jpg)
 Moving on to programming... I want to write something to the screen.. Oh damn.... The monitor is an I/O device, and we know what a pain that it can be to deal with I/O. Let's follow the thought process of a processor in this case.
 
 >Processor: Man... I just booted into memory (address 0x7c00). I'm not even in super saiyan form. I'm still in 16 bit mode, and this programmer wants me to write something to I/O. Kill me already.... I've to look at manuals and all again....
@@ -68,39 +68,8 @@ Now it looks like the Final Boss of this level has punched us enough... Let's be
 
 Note: You must be thinking... what is this al,ah and all. In 16 bit mode, the registers that belong to the **cool gang** are ax,bx,cx and dx. They are the most famous, everyone uses them, everyone loves them. They are the poster boys of 16 bit mode I guess. There are other registers of course. We might deal with a few of them later. The **cool gang** consists of 16 bit general purpose registers (ax,bx,cx,dx). As for ah, it's just a name for the upper byte of ax, while al is the lower byte. Thus, if ax = 0x1234, ah = 0x12 ; al = 0x34. Simple!
 ### Actual assembly code
-> ;Anything that starts with a semicolon is a comment in nasm assembly, like this comment
-> [bits 16] ;We're telling nasm to assemble the instructions for a 16 bit processor (16 bit mode)
-> 
-> mov ah,0x0e  ;Sets ah = 0x0e
-> mov al,'H'   ;Sets al = the ascii value for H = 0x48
-> int 0x10     ;Calls software interrupt 0x10 (16) -- This will use whatever text display routine BIOS left for us and print 'H' on the screen
-> mov al,'e'   ;Note that ah is already set to 0x0e
-> int 0x10     
-> mov al,'l'   
-> int 0x10     
-> mov al,'l'   
-> int 0x10     
-> mov al,'o'   
-> int 0x10    ;This seems a bit repetitive doesn't it? Maybe it calls for a loop? 
-> mov al,' '   
-> int 0x10     
-> mov al,'D'   
-> int 0x10     
-> mov al,'a'   
-> int 0x10     
-> mov al,'d'   
-> int 0x10     
-> mov al,'d'   
-> int 0x10     
-> mov al,'y'   
-> int 0x10     
->
-> jmp $       ;This is a forever loop. The program would come here and terminate (spin here forever)
-> times 510-($-$$) db 0     ;Here $ = current instruction address, $$ = start instruction address, db = **define byte**
-> ;Basically we're zeroing out the rest of the sector, except for the last two bytes. Remember the magic bytes?
-> db 0x55    ;db literally puts the byte there
-> db 0xAA
 
+![Output](/img/Blog3/Code.png)
 Go ahead and save this file (*file.asm* maybe?). Convert to binary (assemble)  with:
 > nasm *file.asm* -o *file.bin*
 
@@ -108,7 +77,7 @@ Go ahead and emulate as you did before:
 > qemu-system-i386 -hda *file.bin* 
 
 
-![Output](/img/Blog3.png)
+![Output](/img/Blog3/Blog3.png)
 
 Feel free to experiment with the hex dump. Knock yourself out!
 
