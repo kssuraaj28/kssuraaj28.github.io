@@ -15,7 +15,7 @@ We'll start of with some history, and quickly dive into hardcore development.
 ### What Goku??? How is a processor related to Goku????
 This is actually pretty interesting.... You know how Goku can go into some Super Saiyan God Blue with multicoloured eyes and hair (with a pinch of Ultra Instict), but always starts fights in base form? That's the same with our processor: Be it Pentium/i3 or even i7, it always starts in base form: like an intel 8086 processor (Man, you get the name x86 from this processor. It really is the *BigDaddy* of processors). If it didn't start in base form something like this would happen:
 
->You: Hey bro, I just bought this cool i3 processor! It's super fast and has registers that are 64 bits in size and all. *Flexes*
+>You: Hey bro, I just bought this cool i3 processor! It's super fast and has registers that are 64 bits in size and all. *\*Flexes*
 
 >Me (A noob who still uses a 16 bit 8086): Oh wow, let my run all my games on yours..
 
@@ -25,7 +25,7 @@ This is actually pretty interesting.... You know how Goku can go into some Super
 
 >You: You see my registers are not the same size...
 
->Me: Go away you noob, always making excuses. You just don't want to play with me. *Cries in corner*
+>Me: Go away you noob, always making excuses. You just don't want to play with me. *\*Cries in corner*
 
 >You: What just happened? That escalated quickly...
 
@@ -37,7 +37,7 @@ So, your friend can still execute his 16 bit code on your processor which is act
 
 
 ### Hello World... Er... Hello Daddy!
-Now we know that the processor starts off in 16 bit real mode, like an 8086/80186. (8088 is like a buffed up version of 8086, but not super saiyan yet... It's still a 16 bit processor, but it has 20 bits for addresses, while the 8086 had 16. (Duh!)
+Now we know that the processor starts off in 16 bit real mode, like an 8086/80186. (80186 is like a buffed up version of 8086, but not super saiyan yet... It's still a 16 bit processor, but it has 20 bits for addresses, while the 8086 had 16. (Duh!))
 
 Well, let's get started with some Bare Metal!
 
@@ -66,10 +66,10 @@ Well, during the execution of the code, there is a special instruction called an
 We just need to input the interrupt number so that we go to the correct routine. After finishing the reuested service, we are brought back to original program. A simple google search says that in 16 bit mode, **int 0x10** corresponds to video services. Specifically, if **register ah was equal to 0x0e** when the interrupt is called, then the ascii letter corresponding to the value in al would be displayed at cursor location, and the cursor would be incremented. How do I know this? Simple: The BIOS manual. Anything that was made for you to use has a manual. This should be firmly imprinted in your memory now. 
 Now it looks like the Final Boss of this level has punched us enough... Let's belt him!
 
-Note: You must be thinking... what is this al,ah and all. In 16 bit mode, the registers that belong to the **cool gang** are ax,bx,cx and dx. They are the most famous, everyone uses them, everyone loves them. They are the poster boys of 16 bit mode I guess. There are other registers of course. We might deal with a few of them later. The **cool gang** consists of 16 bit general purpose registers (ax,bx,cx,dx). As for ah, it's just a name for the upper byte of ax, while al is the lower byte. Thus, if ax = 0x1234, ah = 0x12 ; al = 0x34. Simple!
+Note: You must be thinking... what is this **al,ah** and all. In 16 bit mode, the registers that belong to the *cool gang* are ax,bx,cx and dx. They are the most famous, everyone uses them, everyone loves them. They are the poster boys of 16 bit mode I guess. There are other registers of course. We might deal with a few of them later. The *cool gang* consists of 16 bit general purpose registers (ax,bx,cx,dx). As for **ah**, it's just a name for the upper byte of ax, while al is the lower byte. Thus, if ax = 0x1234, ah = 0x12 ; al = 0x34. Simple!
 ### Actual assembly code
 
-![Output](/img/Blog3/Code.png)
+![Code](/img/Blog3/Code.png)
 Go ahead and save this file (*file.asm* maybe?). Convert to binary (assemble)  with:
 > nasm *file.asm* -o *file.bin*
 
@@ -80,7 +80,6 @@ Go ahead and emulate as you did before:
 ![Output](/img/Blog3/Blog3.png)
 
 Feel free to experiment with the hex dump. Knock yourself out!
-
 
 ### Conclusion and the Chicken and Egg problem
 Well here's some food for thought: We are using an existing OS to create a kind of OS for a bare metal system... So where did the first OS come from? Reading about this might give you something cool about the history of computers themselves.
