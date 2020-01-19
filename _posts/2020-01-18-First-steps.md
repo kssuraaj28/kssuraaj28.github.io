@@ -19,7 +19,7 @@ This is actually pretty interesting.... You know how Goku can go into some Super
 
 >You: Hey bro, I just bought this cool i3 processor! It's super fast and has registers that are 64 bits in size and all. *\*Flexes*
 
->Me (A noob who still uses a 16 bit 8086): Oh wow, let my run all my games on yours..
+>Me (A noob who still uses a 16 bit 8086): Oh wow, let me run all my games on yours..
 
 >You: Ummmm.... No you can't do that...
 
