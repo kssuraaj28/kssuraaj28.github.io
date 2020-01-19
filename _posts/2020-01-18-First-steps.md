@@ -70,8 +70,42 @@ Now it looks like the Final Boss of this level has punched us enough... Let's be
 
 Note: You must be thinking... what is this **al,ah** and all. In 16 bit mode, the registers that belong to the *cool gang* are ax,bx,cx and dx. They are the most famous, everyone uses them, everyone loves them. They are the poster boys of 16 bit mode I guess. There are other registers of course. We might deal with a few of them later. The *cool gang* consists of 16 bit general purpose registers (ax,bx,cx,dx). As for **ah**, it's just a name for the upper byte of ax, while al is the lower byte. Thus, if ax = 0x1234, ah = 0x12 ; al = 0x34. Simple!
 ### Actual assembly code
+I'd prefer the reader to experiment as much as possible. You'd learn a lot more if you didn't just copy-paste ;)
 
-![Code](/img/Blog3/Code.png)
+```
+ ;Anything that starts with a semicolon is a comment in nasm assembly, like this comment
+ [bits 16] ;We're telling nasm to assemble the instructions for a 16 bit processor (16 bit mode)
+ 
+ mov ah,0x0e  ;Sets ah = 0x0e
+ mov al,'H'   ;Sets al = the ascii value for H = 0x48
+ int 0x10     ;Calls software interrupt 0x10 (16) -- This will use whatever text display routine BIOS left for us and print 'H' on the screen
+ mov al,'e'   ;Note that ah is already set to 0x0e
+ int 0x10     
+ mov al,'l'   
+ int 0x10     
+ mov al,'l'   
+ int 0x10     
+ mov al,'o'   
+ int 0x10    ;This seems a bit repetitive doesn't it? Maybe it calls for a loop? 
+ mov al,' '   
+ int 0x10     
+ mov al,'D'   
+ int 0x10     
+ mov al,'a'   
+ int 0x10     
+ mov al,'d'   
+ int 0x10     
+ mov al,'d'   
+ int 0x10     
+ mov al,'y'   
+ int 0x10     
+
+ jmp $       ;This is a forever loop. The program would come here and terminate (spin here forever)
+ times 510-($-$$) db 0     ;Here $ = current instruction address, $$ = start instruction address, db = **define byte**
+ ;Basically we're zeroing out the rest of the sector, except for the last two bytes. Remember the magic bytes?
+ db 0x55    ;db literally puts the byte there
+ db 0xAA
+```
 Go ahead and save this file (*file.asm* maybe?). Convert to binary (assemble)  with:
 > nasm *file.asm* -o *file.bin*
 
