@@ -14,6 +14,7 @@ We'll start of with some history, and quickly dive into hardcore development.
 
 ### What Goku??? How is a processor related to Goku????
 ![Evolution]( /img/Blog3/8086.jpg)
+
 This is actually pretty interesting.... You know how Goku can go into some Super Saiyan God Blue with multicoloured eyes and hair (with a pinch of Ultra Instict), but always starts fights in base form? That's the same with our processor: Be it Pentium/i3 or even i7, it always starts in base form: like an intel 8086 processor (Man, you get the name x86 from this processor. It really is the *BigDaddy* of processors). If it didn't start in base form something like this would happen:
 
 >You: Hey bro, I just bought this cool i3 processor! It's super fast and has registers that are 64 bits in size and all. *\*Flexes*
