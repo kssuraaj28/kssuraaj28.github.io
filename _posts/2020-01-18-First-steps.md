@@ -39,7 +39,7 @@ So, your friend can still execute his 16 bit code on your processor which is act
 
 
 ### Hello World... Er... Hello Daddy!
-Now we know that the processor starts off in 16 bit real mode, like an 8086/80186. (80186 is like a buffed up version of 8086, but not super saiyan yet... It's still a 16 bit processor, but it has 20 bits for addresses, while the 8086 had 16. (Duh!))
+Now we know that the processor starts off in 16 bit real mode, like an 8086. We have to push our limits to get into super saiyan form now! ;)
 
 Well, let's get started with some Bare Metal!
 
